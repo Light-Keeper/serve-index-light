@@ -1,0 +1,6 @@
+<tr>
+    <td class="fileTableName <%- isDir ? "folderIcon" : "fileIcon" %>"><a href="<%- href %>" ><%= name %></a></td>
+    <td class="fileTableSize" title="<%= size %>"><%= sizeHumanReadable %></td>
+    <td class="fileTableDate"><%= strMtime %></td>
+    <td class="fileTableAttribute"><%= strMode %></td>
+</tr>

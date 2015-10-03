@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>listing directory <%= path %></title>
+    <%- options.injectHead %>
+    <style> <%- options.injectCSS %></style>
+</head>
+<body>
+    <div class="pathByComponents">
+        <% for(var i = 0; i < pathComponents.length; i++){
+            %><a href="<%= pathComponents[i].href %>"><%=pathComponents[i].name%></a><span>/</span><%
+        }%>
+    </div>
+
+    <table class="fileTable">
+        <thead>
+            <%- options.injectTableHead %>
+        </thead>
+        <tbody>
+            <%- files.join('\n') %>
+        </tbody>
+     </table>
+
+    <%- options.injectBody %>
+    <script><%- options.injectJS %></script>
+</body>
+</html>
