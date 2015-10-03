@@ -180,20 +180,25 @@ by default uses `rowTemplateProcessor` and `templateProcessor` to generate data.
 
 #####  templateProcessor
 Function, recieves object with data described in `template` section, returns generated html string. uses `ejs` by default. 
+```javascript
 function defaultTemplateProcessor( renderData ){
     if (!this.templateCompiled) {
         this.templateCompiled = ejs.compile(this.template);
     }
     return this.templateCompiled(renderData);
 }
+```
 
 #####  rowTemplateProcessor   
-Function, recieves object with data described in `rowTemplate` section, returns generated html string. uses `ejs` by default. function defaultRowTemplateProcessor(fileInfo){
+Function, recieves object with data described in `rowTemplate` section, returns generated html string. uses `ejs` by default. 
+```javascript
+function defaultRowTemplateProcessor(fileInfo){
     if (!this.rowTemplateCompiled) {
         this.rowTemplateCompiled = ejs.compile(this.rowTemplate);
     }
     return this.rowTemplateCompiled(fileInfo);
 }
+```
 
 #####  middlewareResultHandler
 Function, express result handler. Use it to postprocess data instead of sending it to the client.
