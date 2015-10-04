@@ -1,6 +1,6 @@
 {
   "name": "serve-index-light",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Serve directory listings",
   "author": "Vadim Yanushkevich",
   "license": "MIT",
