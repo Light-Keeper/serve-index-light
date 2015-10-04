@@ -214,3 +214,58 @@ function defaultMiddlewareResultHandler( error, data, req, res, next ){
 #####  scanConcurrency  
 maximum number of parallel IO requests to hard drive. 10 by default.
 
+## Examples 
+
+#### simple file server with express
+
+```javascript
+var serveIndex = require('serve-index-light');
+var express = require('express');
+
+function getFileServer(dir) {
+    var server = express.Router();
+    server.use(express.static(dir));
+    server.use(serveIndex({baseDir : dir}));
+    server.use(function(req, res){
+        res.status(404).end();
+    });
+    return server;
+}
+
+var app = express();
+
+app.use('/shared', getFileServer('D:/public'));
+app.listen(3000);
+```
+
+### serve index without express with custom rendering 
+
+```javascript
+var serveIndex = require('./..');
+var http = require('http');
+
+var serve = serveIndex(
+    {
+          baseDir : 'D:/public'
+        , showHidden : true
+        , rowTemplateProcessor : function( file ) {
+                return file;
+            }
+        , templateProcessor : function(data) {
+                    return JSON.stringify(data, null, 2);
+            }
+    });
+
+
+http.createServer(function (req, res) {
+    serve(req.url, "/", function(err, data){
+        res.end(data);
+    });
+}).listen(3000);
+```
+
+
+##TODO:
+
+* write unit tests
+* code review
