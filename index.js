@@ -1,11 +1,13 @@
 'use strict';
 
 var fs = require('fs');
-var posix_path = require('path').posix;
+var posix_path = require('path-posix');
 var ejs = require('ejs');
 var folderStat = require('folder-stat');
 var Mode = require('stat-mode');
 var fileSize = require('filesize');
+var objectAssign = require('object-assign');
+
 
 var defaultParams = {
     baseDir                 : null
@@ -29,7 +31,7 @@ var defaultParams = {
 
 module.exports = function ServeIndexLight( user_params ){
 
-    var params = Object.assign({}, defaultParams, user_params);
+    var params = objectAssign({}, defaultParams, user_params);
     if (!params.baseDir) throw new TypeError('params.baseDir required');
 
     // entry point for incoming request

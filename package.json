@@ -4,20 +4,20 @@
   "description": "Serve directory listings",
   "author": "Vadim Yanushkevich",
   "license": "MIT",
-
   "dependencies": {
     "ejs": "*",
     "filesize": "*",
     "folder-stat": "*",
+    "object-assign": "*",
+    "path-posix": "*",
     "stat-mode": "*"
   },
 
   "devDependencies": {
     "express": "^4.13.3"
   },
-  
-  "repository": { 
-	"type" : "git",
-	"url" : "https://github.com/Light-Keeper/serve-index-light"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Light-Keeper/serve-index-light"
   }
 }
