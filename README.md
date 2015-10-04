@@ -241,7 +241,7 @@ app.listen(3000);
 ### serve index without express with custom rendering 
 
 ```javascript
-var serveIndex = require('./..');
+var serveIndex = require('serve-index-light');
 var http = require('http');
 
 var serve = serveIndex(
