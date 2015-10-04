@@ -96,7 +96,6 @@ function defaultRender(path, baseUrl, files, callback){
         x.strAtime = x.atime.toLocaleString();
         x.strMtime = x.mtime.toLocaleString();
         x.strCtime = x.ctime.toLocaleString();
-        x.strBirthtime = x.birthtime.toLocaleString();
         x.strMode = m.toString();
         x.baseUrl = baseUrl;
         x.path = path;
