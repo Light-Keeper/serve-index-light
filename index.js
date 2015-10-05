@@ -93,16 +93,18 @@ function defaultRender(path, baseUrl, files, callback){
 
     var preparedFiles = files.map( function(x){
         var m = new Mode(x);
-        x.strAtime = x.atime.toLocaleString();
-        x.strMtime = x.mtime.toLocaleString();
-        x.strCtime = x.ctime.toLocaleString();
+        if (x.atime) x.strAtime = x.atime.toLocaleString();
+        if (x.mtime) x.strMtime = x.mtime.toLocaleString();
+        if (x.ctime) x.strCtime = x.ctime.toLocaleString();
+        if (x.birthtime) x.strBirthtime = x.birthtime.toLocaleString();
+
         x.strMode = m.toString();
         x.baseUrl = baseUrl;
         x.path = path;
         x.href = posix_path.normalize(baseUrl + '/' + path + '/' + x.name);
-        x.size = x.isDirectory() ? "" : x.size;
-        x.sizeHumanReadable = x.isDirectory() ? "" : fileSize(x.size);
-        x.isDir = x.isDirectory();
+        x.size = m.isDirectory() ? "" : x.size;
+        x.sizeHumanReadable = m.isDirectory() ? "" : fileSize(x.size);
+        x.isDir = m.isDirectory();
         return x;
     } ).map(this.rowTemplateProcessor, this);
 

@@ -25,7 +25,7 @@ var express = require('express');
 
 var servePublicIndex = serveIndex({ baseDir : "D:/public" })
 
-// servePublicIndex could be used as as standalone serve function: 
+// servePublicIndex could be used as standalone serve function: 
  http.createServer(function (req, res) {
         servePublicIndex(req.url, "/", function(err, data){
             res.end(data);
@@ -41,7 +41,7 @@ app.listen(4000);
 Stadalone mode : `servePublicIndex(path, basePath, callback)` where
 
 * `path` - requested path
-* `basePath` - path to preppend to each generated link. for example you serve `http://example.com/shared/` from `D:/public`, you should use `path = '/'` and `basePath = '/shared'`.
+* `basePath` - path to prepend to each generated link. for example you serve `http://example.com/shared/` from `D:/public`, you should use `path = '/'` and `basePath = '/shared'`.
 * `function callback(error, data)` - function will be called with `error` and `data`. `error` might be `null` or object like ` { status : 500, message : "invalid path"}`. `data` is html string by default.  
 
 
@@ -51,7 +51,7 @@ Express middleware mode: `servePublicIndex(req, res, next)`. uses `req.path` as 
 in case of 404 error `next()` is called, in case of other error `next(error)` is called. if no error ` res.end(data)` is called. this behaviour could be changed by `middlewareResultHandler` option.
 
 #### Options
-Some options are functions(behaviour parameterization). all such functions reccive full `options` object as `this` parameter.
+Some options are functions(behaviour parameterization). all such functions receive full `options` object as `this` parameter.
 
 ##### baseDir 
 Required. Path in local file system to serve files from. 
@@ -105,8 +105,8 @@ function dymmyComparator(a, b){
 }
 ```
 #####  rowTemplate            
-Template to render view for 1 file. Default template is tabe, `rowTemplate` is expected to generate one row for this table.
-Default template engine is `ejs`. Could be overrided by `rowTemplateProcessor`.
+Template to render view for 1 file. Default template is table, `rowTemplate` is expected to generate one row for this table.
+Default template engine is `ejs`. Could be overridden by `rowTemplateProcessor`.
 
 parameters passed to template: 
 ```javascript
@@ -126,7 +126,7 @@ parameters passed to template:
 if you need additional parameters, override `rowTemplateProcessor`, `filter` or `fileListProvider`.
 
 #####  template
-Template to render entire view. Default template is http page with tabe. Default template engine is `ejs`. Could be overrided by `templateProcessor`.
+Template to render entire view. Default template is http page with table. Default template engine is `ejs`. Could be overridden by `templateProcessor`.
 
 parameters passed to template: 
 ```javascript
@@ -169,7 +169,7 @@ injectBody='<script src="js/custom.js"></script>'
 ```
 
 #####  render
-Function, recieves path, baseUrl, array of files and callback for result.
+Function, receives path, baseUrl, array of files and callback for result.
 ```javascript
 function defaultRender(path, baseUrl, files, callback){
 ....
@@ -179,7 +179,7 @@ callback(error, generatedData);
 by default uses `rowTemplateProcessor` and `templateProcessor` to generate data. 
 
 #####  templateProcessor
-Function, recieves object with data described in `template` section, returns generated html string. uses `ejs` by default. 
+Function, receives object with data described in `template` section, returns generated html string. uses `ejs` by default. 
 ```javascript
 function defaultTemplateProcessor( renderData ){
     if (!this.templateCompiled) {
@@ -190,7 +190,7 @@ function defaultTemplateProcessor( renderData ){
 ```
 
 #####  rowTemplateProcessor   
-Function, recieves object with data described in `rowTemplate` section, returns generated html string. uses `ejs` by default. 
+Function, receives object with data described in `rowTemplate` section, returns generated html string. uses `ejs` by default. 
 ```javascript
 function defaultRowTemplateProcessor(fileInfo){
     if (!this.rowTemplateCompiled) {
@@ -268,4 +268,3 @@ http.createServer(function (req, res) {
 ##TODO:
 
 * write unit tests
-* code review
