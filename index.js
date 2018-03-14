@@ -91,7 +91,7 @@ function defaultFilter(fileInfo){
 
 function defaultRender(path, baseUrl, files, callback){
 
-    var preparedFiles = files.map( function(x){
+    var preparedFiles = files.map( function(x,index){
         var m = new Mode(x);
         if (x.atime) x.strAtime = x.atime.toLocaleString();
         if (x.mtime) x.strMtime = x.mtime.toLocaleString();
@@ -105,6 +105,7 @@ function defaultRender(path, baseUrl, files, callback){
         x.size = m.isDirectory() ? "" : x.size;
         x.sizeHumanReadable = m.isDirectory() ? "" : fileSize(x.size);
         x.isDir = m.isDirectory();
+        x.index = index;
         return x;
     } ).map(this.rowTemplateProcessor, this);
 
